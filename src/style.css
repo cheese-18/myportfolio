@@ -4,4 +4,134 @@
 
 html {
   scroll-behavior: smooth;
+  image-rendering: pixelated;
+}
+
+/* Minecraft-like Overworld & The End backgrounds */
+.overworld-bg {
+  background: linear-gradient(180deg, #78a7ff 0%, #a4c8ff 45%, #d4e7ff 75%, #5c8e32 75%, #466e25 100%);
+  background-attachment: fixed;
+}
+
+.dark .overworld-bg {
+  background: radial-gradient(circle at 50% 30%, #1c0f2b 0%, #0c0714 60%, #05020a 100%);
+  background-attachment: fixed;
+}
+
+/* Pixel borders and buttons */
+.mc-card {
+  border: 4px solid #3c2f1f;
+  background-color: #d6b885;
+  box-shadow: 
+    inset -4px -4px 0px 0px #8b6534,
+    inset 4px 4px 0px 0px #f4ddb4,
+    4px 4px 0px 0px rgba(0,0,0,0.35);
+}
+
+.dark .mc-card {
+  border: 4px solid #1f1235;
+  background-color: #2b1842;
+  box-shadow: 
+    inset -4px -4px 0px 0px #180927,
+    inset 4px 4px 0px 0px #4d2b77,
+    4px 4px 0px 0px rgba(0,0,0,0.6);
+}
+
+.mc-button {
+  background: #737373;
+  border: 3px solid #000000;
+  box-shadow: 
+    inset -3px -3px 0px 0px #3c3c3c,
+    inset 3px 3px 0px 0px #a8a8a8;
+  color: #e0e0e0;
+  text-shadow: 2px 2px 0px #222222;
+  transition: all 0.08s ease;
+}
+
+.mc-button:hover {
+  background: #8b8b8b;
+  color: #ffffa0;
+  box-shadow: 
+    inset -3px -3px 0px 0px #4b4b4b,
+    inset 3px 3px 0px 0px #bcbcbc;
+}
+
+.mc-button:active {
+  box-shadow: 
+    inset 3px 3px 0px 0px #2b2b2b,
+    inset -3px -3px 0px 0px #8b8b8b;
+  transform: translateY(2px);
+}
+
+.mc-button-primary {
+  background: #2e6e30;
+  border: 3px solid #143516;
+  box-shadow: 
+    inset -3px -3px 0px 0px #1c451e,
+    inset 3px 3px 0px 0px #459a48;
+  color: #ffffff;
+  text-shadow: 2px 2px 0px #0e2410;
+}
+
+.mc-button-primary:hover {
+  background: #38843a;
+  color: #ffffa0;
+}
+
+.dark .mc-button-primary {
+  background: #6a1b9a;
+  border: 3px solid #2e0842;
+  box-shadow: 
+    inset -3px -3px 0px 0px #3d0e59,
+    inset 3px 3px 0px 0px #9c27b0;
+  text-shadow: 2px 2px 0px #1d052a;
+}
+
+.dark .mc-button-primary:hover {
+  background: #8e24aa;
+}
+
+/* Floating clouds animation in Overworld */
+@keyframes floatClouds {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100vw); }
+}
+
+.mc-cloud {
+  position: absolute;
+  background: #ffffff;
+  box-shadow: 
+    0 -10px 0 0 #ffffff,
+    0 10px 0 0 #ffffff,
+    -10px 0 0 0 #ffffff,
+    10px 0 0 0 #ffffff,
+    inset -4px -4px 0 0 #d9e6f2;
+  opacity: 0.85;
+}
+
+/* End particles animation */
+@keyframes endFloat {
+  0% { transform: translateY(0) scale(1); opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-120px) scale(0.3); opacity: 0; }
+}
+
+.end-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #d946ef;
+  box-shadow: 0 0 8px #c026d3;
+  animation: endFloat 3s infinite linear;
+}
+
+/* Portal teleport flash animation */
+@keyframes portalFlash {
+  0% { opacity: 0; }
+  50% { opacity: 0.95; filter: hue-rotate(90deg) brightness(1.3); }
+  100% { opacity: 0; }
+}
+
+.portal-transition-active {
+  animation: portalFlash 0.6s ease-in-out;
 }
