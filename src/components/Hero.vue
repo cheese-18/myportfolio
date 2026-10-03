@@ -2,6 +2,7 @@
 import { portfolioData } from '../data/portfolio'
 import { Github, Instagram, Facebook, Sword, Pickaxe } from 'lucide-vue-next'
 import MinecraftSkinViewer from './MinecraftSkinViewer.vue'
+const skinUrl = `${import.meta.env.BASE_URL}skin.png`
 </script>
 
 <template>
@@ -62,7 +63,7 @@ import MinecraftSkinViewer from './MinecraftSkinViewer.vue'
 
       <!-- 3D Interactive Minecraft Skin Viewer -->
       <div class="flex-shrink-0">
-        <MinecraftSkinViewer skin-url="/skin.png" />
+        <MinecraftSkinViewer :skin-url="skinUrl" />
       </div>
 
     </div>
