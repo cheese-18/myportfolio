@@ -1,8 +1,13 @@
 <script setup>
+import { ref } from 'vue'
 import { portfolioData } from '../data/portfolio'
-import { Github, Instagram, Facebook, Sword, Pickaxe } from 'lucide-vue-next'
+import { Github, Instagram, Facebook, Sword, Pickaxe, User, Box } from 'lucide-vue-next'
 import MinecraftSkinViewer from './MinecraftSkinViewer.vue'
+
 const skinUrl = `${import.meta.env.BASE_URL}skin.png`
+const profileUrl = `${import.meta.env.BASE_URL}profile.jpg`
+
+const displayMode = ref('avatar') // 'avatar' or 'skin'
 </script>
 
 <template>
@@ -61,9 +66,63 @@ const skinUrl = `${import.meta.env.BASE_URL}skin.png`
         </div>
       </div>
 
-      <!-- 3D Interactive Minecraft Skin Viewer -->
-      <div class="flex-shrink-0">
-        <MinecraftSkinViewer :skin-url="skinUrl" />
+      <!-- Avatar / 3D Skin Showcase (2x2 square frame) -->
+      <div class="flex-shrink-0 flex flex-col items-center">
+        <!-- Switch Tab Mode -->
+        <div class="flex gap-2 mb-3 font-pixel text-xs">
+          <button 
+            @click="displayMode = 'avatar'"
+            :class="[
+              'px-3 py-1 border-2 transition flex items-center gap-1.5',
+              displayMode === 'avatar' 
+                ? 'bg-amber-800 text-yellow-300 border-black shadow' 
+                : 'bg-[#707070] text-gray-200 border-black/60 hover:bg-[#808080]'
+            ]"
+          >
+            <User class="w-3.5 h-3.5" />
+            <span>Photo</span>
+          </button>
+          <button 
+            @click="displayMode = 'skin'"
+            :class="[
+              'px-3 py-1 border-2 transition flex items-center gap-1.5',
+              displayMode === 'skin' 
+                ? 'bg-amber-800 text-yellow-300 border-black shadow' 
+                : 'bg-[#707070] text-gray-200 border-black/60 hover:bg-[#808080]'
+            ]"
+          >
+            <Box class="w-3.5 h-3.5" />
+            <span>3D Skin</span>
+          </button>
+        </div>
+
+        <!-- 2x2 Square Aspect Frame -->
+        <div class="relative p-2.5 bg-[#4a3b2c]/80 dark:bg-[#1f1033]/80 border-4 border-[#2c1d0f] dark:border-[#522a86] shadow-2xl rounded">
+          
+          <!-- Real 2x2 Photo Frame -->
+          <div 
+            v-if="displayMode === 'avatar'" 
+            class="w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] relative overflow-hidden border-4 border-black/70 bg-black/40 shadow-inner group"
+          >
+            <img 
+              :src="profileUrl" 
+              alt="Rean Coopera (Cheese)" 
+              class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+            />
+            <div class="absolute bottom-0 inset-x-0 bg-black/75 p-2 text-center text-yellow-300 font-pixel text-[11px] border-t-2 border-black">
+              Player: Cheese (Rean)
+            </div>
+          </div>
+
+          <!-- 3D Skin Viewer Frame -->
+          <div 
+            v-else 
+            class="w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] flex items-center justify-center border-4 border-black/70 bg-black/40 overflow-hidden"
+          >
+            <MinecraftSkinViewer :skin-url="skinUrl" />
+          </div>
+
+        </div>
       </div>
 
     </div>
