@@ -9,6 +9,7 @@ import Contact from './components/Contact.vue'
 import MinecraftBackground from './components/MinecraftBackground.vue'
 import InteractiveTerminal from './components/InteractiveTerminal.vue'
 import MinecraftWeaponCursor from './components/MinecraftWeaponCursor.vue'
+import MojangIntro from './components/MojangIntro.vue'
 
 const currentDimension = ref('overworld') // 'overworld' | 'nether' | 'end'
 const isTeleporting = ref(false)
@@ -55,6 +56,8 @@ onMounted(() => {
 
 <template>
   <div class="min-h-screen flex flex-col justify-between relative overworld-bg font-minecraft transition-colors duration-700">
+    <MojangIntro />
+
     <!-- Custom Netherite Sword & Mace Smash Cursor -->
     <MinecraftWeaponCursor />
 
