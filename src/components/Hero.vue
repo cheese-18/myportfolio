@@ -1,13 +1,28 @@
 <script setup>
 import { ref } from 'vue'
 import { portfolioData } from '../data/portfolio'
-import { Github, Instagram, Facebook, Sword, Pickaxe, User, Box } from 'lucide-vue-next'
+import { Github, Instagram, Facebook, Sword, Pickaxe, User, Box, FileDown, Check } from 'lucide-vue-next'
 import MinecraftSkinViewer from './MinecraftSkinViewer.vue'
+import { generateResumePDF } from '../utils/generatePdf'
 
 const skinUrl = `${import.meta.env.BASE_URL}skin.png`
 const profileUrl = `${import.meta.env.BASE_URL}profile.jpg`
 
 const displayMode = ref('avatar') // 'avatar' or 'skin'
+const isDownloadingPdf = ref(false)
+
+const handleDownloadPdf = () => {
+  isDownloadingPdf.value = true
+  try {
+    generateResumePDF()
+  } catch (err) {
+    console.error('Failed to generate PDF:', err)
+  } finally {
+    setTimeout(() => {
+      isDownloadingPdf.value = false
+    }, 2000)
+  }
+}
 </script>
 
 <template>
@@ -43,6 +58,15 @@ const displayMode = ref('avatar') // 'avatar' or 'skin'
             <Sword class="w-4 h-4" />
             <span>View Quests</span>
           </a>
+          <button 
+            @click="handleDownloadPdf"
+            class="mc-button px-6 py-3 flex items-center gap-2 text-sm font-bold hover:text-yellow-300 cursor-pointer"
+            :disabled="isDownloadingPdf"
+          >
+            <Check v-if="isDownloadingPdf" class="w-4 h-4 text-green-400" />
+            <FileDown v-else class="w-4 h-4 text-yellow-400 animate-bounce" />
+            <span>{{ isDownloadingPdf ? 'Downloaded!' : 'Download Resume (PDF)' }}</span>
+          </button>
           <a 
             href="#contact" 
             class="mc-button px-6 py-3 flex items-center gap-2 text-sm font-bold"
