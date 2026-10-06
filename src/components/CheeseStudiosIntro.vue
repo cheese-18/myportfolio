@@ -40,26 +40,21 @@ onMounted(() => {
       isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'
     ]"
   >
-    <!-- Mojang Studios Style Logo Container -->
+    <!-- Cheese Studios logo -->
     <div class="flex flex-col items-center justify-center space-y-6 animate-in zoom-in-95 duration-500">
       
-      <!-- Authentic Red & White Mojang Studios Geometric Emblem -->
       <div class="flex items-center gap-2 sm:gap-3 text-white">
-        <!-- Logo Emblem -->
-        <svg class="w-16 h-16 sm:w-20 sm:h-20 drop-shadow-md" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Outer Rounded Badge -->
-          <rect x="5" y="5" width="90" height="90" rx="18" fill="white" />
-          <!-- Characteristic Mojang geometric cuts -->
-          <path d="M22 26 H42 V74 H22 Z" fill="#ef323d" />
-          <path d="M42 26 H78 V44 H42 Z" fill="#ef323d" />
-          <path d="M58 44 H78 V74 H58 Z" fill="#ef323d" />
-          <circle cx="50" cy="59" r="6" fill="#ef323d" />
+        <svg class="w-16 h-16 sm:w-20 sm:h-20 drop-shadow-md" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M13 32C13 27 17 23 22 24L82 39C87 40 89 45 87 50L75 78C73 83 69 85 64 83L18 68C13 66 11 62 13 57L13 32Z" fill="white" />
+          <circle cx="34" cy="41" r="5" fill="#ef323d" />
+          <circle cx="63" cy="49" r="6" fill="#ef323d" />
+          <circle cx="43" cy="64" r="4" fill="#ef323d" />
         </svg>
 
         <!-- Brand Typography -->
         <div class="flex flex-col leading-none font-bold tracking-tight">
           <span class="text-4xl sm:text-6xl font-black font-sans uppercase tracking-widest text-white drop-shadow-sm">
-            MOJANG
+            CHEESE
           </span>
           <span class="text-xs sm:text-sm font-sans tracking-[0.35em] text-white/90 uppercase pl-1 mt-1 font-semibold">
             S T U D I O S
@@ -87,10 +82,3 @@ onMounted(() => {
     </div>
   </div>
 </template>
-
-<style scoped>
-@keyframes mojangPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.02); }
-}
-</style>
