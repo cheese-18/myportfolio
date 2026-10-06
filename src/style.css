@@ -7,7 +7,7 @@ html {
   image-rendering: pixelated;
 }
 
-/* Minecraft-like Overworld & The End backgrounds */
+/* Minecraft-like Overworld, Nether, & The End backgrounds */
 .overworld-bg {
   background: linear-gradient(180deg, #78a7ff 0%, #a4c8ff 45%, #d4e7ff 75%, #5c8e32 75%, #466e25 100%);
   background-attachment: fixed;
@@ -15,6 +15,11 @@ html {
 
 .dark .overworld-bg {
   background: radial-gradient(circle at 50% 30%, #1c0f2b 0%, #0c0714 60%, #05020a 100%);
+  background-attachment: fixed;
+}
+
+.nether .overworld-bg {
+  background: radial-gradient(circle at 50% 50%, #520909 0%, #2b0404 55%, #150000 100%);
   background-attachment: fixed;
 }
 
@@ -35,6 +40,15 @@ html {
     inset -4px -4px 0px 0px #180927,
     inset 4px 4px 0px 0px #4d2b77,
     4px 4px 0px 0px rgba(0,0,0,0.6);
+}
+
+.nether .mc-card {
+  border: 4px solid #3b0e0e;
+  background-color: #5c1818;
+  box-shadow: 
+    inset -4px -4px 0px 0px #290808,
+    inset 4px 4px 0px 0px #9e2a2b,
+    4px 4px 0px 0px rgba(0,0,0,0.65);
 }
 
 .mc-button {
@@ -91,6 +105,20 @@ html {
   background: #8e24aa;
 }
 
+.nether .mc-button-primary {
+  background: #991b1b;
+  border: 3px solid #450a0a;
+  box-shadow: 
+    inset -3px -3px 0px 0px #5c0f0f,
+    inset 3px 3px 0px 0px #ef4444;
+  text-shadow: 2px 2px 0px #200404;
+}
+
+.nether .mc-button-primary:hover {
+  background: #dc2626;
+  color: #fef08a;
+}
+
 /* Floating clouds animation in Overworld */
 @keyframes floatClouds {
   0% { transform: translateX(-100%); }
@@ -123,6 +151,22 @@ html {
   background: #d946ef;
   box-shadow: 0 0 8px #c026d3;
   animation: endFloat 3s infinite linear;
+}
+
+/* Nether embers animation */
+@keyframes netherEmberFloat {
+  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.9; }
+  50% { transform: translateY(-80px) translateX(15px) scale(1.2); opacity: 1; }
+  100% { transform: translateY(-160px) translateX(-10px) scale(0.2); opacity: 0; }
+}
+
+.nether-particle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: #f97316;
+  box-shadow: 0 0 10px #ea580c, 0 0 15px #facc15;
+  animation: netherEmberFloat 3.5s infinite ease-out;
 }
 
 /* Portal teleport flash animation */

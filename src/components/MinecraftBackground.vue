@@ -1,10 +1,8 @@
 <script setup>
-import { computed } from 'vue'
-
-const props = defineProps({
-  isDark: {
-    type: Boolean,
-    default: false
+defineProps({
+  dimension: {
+    type: String,
+    default: 'overworld' // 'overworld' | 'nether' | 'end'
   }
 })
 </script>
@@ -12,7 +10,7 @@ const props = defineProps({
 <template>
   <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
     <!-- Overworld Mode: Floating Pixel Clouds & Sun -->
-    <div v-if="!isDark" class="relative w-full h-full">
+    <div v-if="dimension === 'overworld'" class="relative w-full h-full">
       <!-- Minecraft Sun -->
       <div class="absolute top-12 right-16 w-20 h-20 bg-yellow-200 border-4 border-yellow-400 shadow-[0_0_40px_rgba(255,230,100,0.8)]"></div>
       
@@ -20,6 +18,25 @@ const props = defineProps({
       <div class="mc-cloud w-48 h-12 top-24 left-[10%] opacity-80" style="animation: floatClouds 50s linear infinite;"></div>
       <div class="mc-cloud w-64 h-14 top-48 left-[45%] opacity-70" style="animation: floatClouds 70s linear infinite 5s;"></div>
       <div class="mc-cloud w-56 h-10 top-16 left-[75%] opacity-75" style="animation: floatClouds 60s linear infinite 15s;"></div>
+    </div>
+
+    <!-- Nether Mode: Floating Embers & Lava Glow -->
+    <div v-else-if="dimension === 'nether'" class="relative w-full h-full">
+      <!-- Nether Embers -->
+      <div 
+        v-for="n in 35" 
+        :key="n" 
+        class="nether-particle"
+        :style="{
+          left: `${(n * 2.8) % 100}%`,
+          top: `${(n * 6.3) % 95 + 5}%`,
+          animationDuration: `${2.5 + (n % 3)}s`,
+          animationDelay: `${(n % 6) * 0.4}s`
+        }"
+      ></div>
+
+      <!-- Nether Crimson fog ambience -->
+      <div class="absolute bottom-0 inset-x-0 h-96 bg-gradient-to-t from-red-600/30 via-orange-600/10 to-transparent"></div>
     </div>
 
     <!-- The End Mode: Ender Particles & Void Ambience -->
