@@ -5,6 +5,11 @@
 html {
   scroll-behavior: smooth;
   image-rendering: pixelated;
+  cursor: none; /* Custom Minecraft Weapon Cursor */
+}
+
+a, button, input, textarea, select {
+  cursor: none !important;
 }
 
 /* Minecraft-like Overworld, Nether, & The End backgrounds */
